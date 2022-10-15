@@ -157,32 +157,17 @@ jobs:
         with:
           node-version: 16.x
 
-      # - run: git fetch --prune --unshallow --tags
-
-      - name: Download dist artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: lib
-
-      - name: Tar release files # This would actually build your project, using zip for an example artifact
-        run: |
-          tar -czf /tmp/lib.tar.gz .
-
       - name: Set version
         id: vars
         shell: bash
         run: |
           git fetch -a
           echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
-          echo "RELEASE_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Create release
         uses: 'actions/github-script@v6'
         env:
           RELEASE_TAG: ${{ env.RELEASE_TAG }}
-          RELEASE_SHA: ${{ env.RELEASE_SHA }}
-          RUNNER_OS: ${{ runner.os }}
-          RUNNER_ARCH: ${{ runner.arch }}
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
           script: |
