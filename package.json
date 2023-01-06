@@ -1,5 +1,5 @@
 {
-  "name": "@jameswspears/ts-starter",
+  "name": "@jameswspears/ts-lib-starter",
   "version": "0.0.3",
   "description": "TypeScript starter template.",
   "main": "dist/index.js",
