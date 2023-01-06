@@ -1,5 +1,5 @@
 {
-  "name": "@jameswspears/ts-starter",
+  "name": "@jameswspears/ts-lib-starter",
   "version": "0.0.2",
   "description": "TypeScript starter template.",
   "main": "dist/index.js",
@@ -44,15 +44,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jameone/ts-starter.git"
+    "url": "git+https://github.com/jameone/ts-lib-starter.git"
   },
   "files": [
     "dist/**"
   ],
   "bugs": {
-    "url": "https://github.com/jameone/ts-starter/issues"
+    "url": "https://github.com/jameone/ts-lib-starter/issues"
   },
-  "homepage": "https://github.com/jameone/ts-starter#readme",
+  "homepage": "https://github.com/jameone/ts-lib-starter#readme",
   "directories": {
     "test": "test"
   }
