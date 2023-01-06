@@ -15,7 +15,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Cache node modules
         id: cache-npm
@@ -30,9 +30,10 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
       - name: Install dependencies
         run: npm ci
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Lint Source
         run: npm run ci:lint
@@ -49,8 +50,7 @@ jobs:
           name: coverage
           path: |
             coverage
-
-  version-bump:
+  generate-package:
     needs: acceptance-test
     runs-on: ubuntu-latest
 
@@ -61,13 +61,12 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Git config
         run: |
           git config --global user.name '🤖'
           git config --global user.email '🤖'
-
       - name: Bump version
         id: version-bump
         uses: actions/checkout@v3
@@ -82,51 +81,6 @@ jobs:
         if: endsWith(github.ref, '/dev')
         run: echo "version=$(npm version prerelease -m 'Bump version v%s [skip ci]')" >> $GITHUB_ENV
 
-      - name: Git Push
-        run: |
-          git push
-          git push --tags
-
-  generate-docs:
-    needs: version-bump
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Generate Documentation
-        run: npm run doc
-
-      - name: Archive documentation artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: docs
-          path: |
-            docs
-
-  generate-package:
-    needs: version-bump
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          registry-url: 'https://npm.pkg.github.com'
-
       - name: Install dependencies
         run: npm ci
 
@@ -140,11 +94,39 @@ jobs:
           path: |
             dist
             package*.json
-
       - run: npm publish
         env:
           NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Git Push
+        run: |
+          git push
+          git push --tags
+  generate-docs:
+    needs: generate-package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Documentation
+        run: npm run doc
+
+      - name: Archive documentation artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path: |
+            docs
   create-release:
     needs: generate-package
     runs-on: ubuntu-latest
@@ -155,7 +137,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Set version
         id: vars
@@ -163,7 +145,6 @@ jobs:
         run: |
           git fetch -a
           echo "RELEASE_TAG=$(git tag --sort=committerdate | tail -1)" >> $GITHUB_ENV
-
       - name: Create release
         uses: 'actions/github-script@v6'
         env:
@@ -184,3 +165,4 @@ jobs:
             } catch (error) {
               core.setFailed(error.message);
             }
+            
