@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "@jameswspears/ts-lib-starter",
   "version": "0.0.2",
+=======
+  "name": "@jameswspears/ts-starter",
+  "version": "0.0.3",
+>>>>>>> 4b341b92f4e80d8f27bb0bcbaa4b779370f88368
   "description": "TypeScript starter template.",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
