@@ -1,5 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import terser from '@rollup/plugin-terser';
 
 export default [
   {
@@ -14,7 +15,9 @@ export default [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript(),
+      typescript({
+        sourceMap: true,
+      }),
     ],
   },
   {
@@ -29,7 +32,10 @@ export default [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript(),
+      typescript({
+        sourceMap: true,
+      }),
+      terser(),
     ],
   },
   {
@@ -43,7 +49,9 @@ export default [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript(),
+      typescript({
+        sourceMap: true,
+      }),
     ],
   },
   {
@@ -57,7 +65,8 @@ export default [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript(),
+      typescript({ sourceMap: true }),
+      terser(),
     ],
   },
   {
@@ -65,12 +74,13 @@ export default [
     output: {
       file: './dist/index.js',
       format: 'esm',
+      sourcemap: true,
     },
     plugins: [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ sourceMap: true }),
     ],
   },
   {
@@ -79,12 +89,15 @@ export default [
       file: './dist/cjs/index.cjs',
       format: 'cjs',
       exports: 'named',
+      sourcemap: true,
     },
     plugins: [
       resolve({
         extensions: ['.ts'],
       }),
-      typescript(),
+      typescript({
+        sourceMap: true,
+      }),
     ],
   },
 ];
