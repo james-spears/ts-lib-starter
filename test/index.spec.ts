@@ -1,4 +1,4 @@
-import lib from '../src/index';
+import lib from '@/index';
 
 describe('Placeholder', () => {
   test('should pass', () => {
