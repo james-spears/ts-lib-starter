@@ -35,11 +35,8 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Lint Source
-        run: npm run ci:lint
-
-      - name: Assert Formatting
-        run: npm run ci:format
+      - name: Check Code Standards
+        run: npm run check
 
       - name: Unit Test
         run: npm test

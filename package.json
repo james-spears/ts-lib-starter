@@ -20,8 +20,7 @@
     "build": "rollup -c rollup.config.js",
     "format": "prettier . --write",
     "lint": "eslint -c .eslintrc.json . --fix",
-    "ci:format": "prettier . --check",
-    "ci:lint": "eslint -c .eslintrc.json .",
+    "check": "prettier . --check --loglevel silent && eslint -c .eslintrc.json .",
     "tidy": "npm run format && npm run lint"
   },
   "author": "James W. Spears",

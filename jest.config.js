@@ -1,10 +1,6 @@
 export default {
-  collectCoverageFrom: [
-    './src/**/*.{ts}',
-  ],
+  collectCoverageFrom: ['./src/**/*.{ts}'],
   moduleNameMapper: {
-    '@/(.*)': [
-      '<rootDir>/src/$1'
-    ],
+    '@/(.*)': ['<rootDir>/src/$1'],
   },
 };
