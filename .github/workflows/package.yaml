@@ -85,7 +85,7 @@ jobs:
         run: npm run build
 
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lib
           path: |
@@ -128,7 +128,7 @@ jobs:
         run: npm run doc
 
       - name: Archive documentation artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docs
           path: |
