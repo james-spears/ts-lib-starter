@@ -1,6 +1,6 @@
 {
   "name": "@james-spears/ts-lib-starter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "TypeScript starter template.",
   "main": "dist/index.cjs",
   "type": "module",
