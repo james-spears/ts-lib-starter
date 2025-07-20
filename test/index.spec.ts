@@ -1,7 +1,11 @@
-import lib from '@/index';
+import { server } from '@/index';
 
-describe('Placeholder', () => {
+describe('Server is defined', () => {
+  afterAll(() => {
+    server.close();
+  });
+
   test('should pass', () => {
-    expect(lib.TEST).toBe('test');
+    expect(server).toBeTruthy();
   });
 });

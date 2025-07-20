@@ -1,99 +1,22 @@
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import terser from '@rollup/plugin-terser';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 
 export default [
   {
     input: 'src/index.ts',
     output: {
-      file: './dist/bundles/index.umd.js',
-      format: 'umd',
-      name: 'corerxplc',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve({
-        extensions: ['.ts'],
-      }),
-      typescript({
-        sourceMap: true,
-      }),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: './dist/bundles/index.umd.min.js',
-      format: 'umd',
-      name: 'corerxplc',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve({
-        extensions: ['.ts'],
-      }),
-      typescript({
-        sourceMap: true,
-      }),
-      terser(),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: './dist/bundles/index.esm.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve({
-        extensions: ['.ts'],
-      }),
-      typescript({
-        sourceMap: true,
-      }),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: './dist/bundles/index.esm.min.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve({
-        extensions: ['.ts'],
-      }),
-      typescript({ sourceMap: true }),
-      terser(),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: './dist/index.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve({
-        extensions: ['.ts'],
-      }),
-      typescript({ sourceMap: true }),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: './dist/cjs/index.cjs',
+      file: './dist/index.cjs',
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
     },
     plugins: [
+      commonjs(),
+      json(),
       resolve({
-        extensions: ['.ts'],
+        extensions: ['.ts', '.js'],
       }),
       typescript({
         sourceMap: true,
