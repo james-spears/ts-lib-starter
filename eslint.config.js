@@ -5,14 +5,7 @@ export default [
   eslint.configs.recommended,
   ...tseslint.configs.strict,
   {
-    ignores: [
-      'node_modules',
-      'dist',
-      'rollup.*.js',
-      'docs',
-      '*.js',
-      '*.cjs',
-    ],
+    ignores: ['node_modules', 'dist', 'rollup.*.js', 'docs', '*.js', '*.cjs'],
   },
   {
     rules: {

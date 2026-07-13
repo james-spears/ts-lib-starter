@@ -17,6 +17,7 @@ npm run doc            # generate TypeDoc docs
 ```
 
 Run a single test file:
+
 ```bash
 npx vitest run test/index.spec.ts
 ```
@@ -25,14 +26,13 @@ npx vitest run test/index.spec.ts
 
 Rollup builds six targets from `src/index.ts`:
 
-| File | Format |
-|------|--------|
-| `dist/index.js` | ESM (main entry) |
-| `dist/cjs/index.cjs` | CJS |
-| `dist/bundles/index.umd.js` | UMD |
-| `dist/bundles/index.umd.min.js` | UMD minified |
-| `dist/bundles/index.esm.js` | ESM bundle |
+| File                            | Format                         |
+| ------------------------------- | ------------------------------ |
+| `dist/index.js`                 | ESM (main entry)               |
+| `dist/cjs/index.cjs`            | CJS                            |
+| `dist/bundles/index.umd.js`     | UMD                            |
+| `dist/bundles/index.umd.min.js` | UMD minified                   |
+| `dist/bundles/index.esm.js`     | ESM bundle                     |
 | `dist/bundles/index.esm.min.js` | ESM minified (browser default) |
 
 The `exports` field in `package.json` routes `require`/`import` to CJS/ESM accordingly.
-
