@@ -8,7 +8,7 @@ export default [
     output: {
       file: './dist/bundles/index.umd.js',
       format: 'umd',
-      name: 'corerxplc',
+      name: 'core',
       sourcemap: true,
     },
     plugins: [
@@ -25,7 +25,7 @@ export default [
     output: {
       file: './dist/bundles/index.umd.min.js',
       format: 'umd',
-      name: 'corerxplc',
+      name: 'core',
       sourcemap: true,
     },
     plugins: [
