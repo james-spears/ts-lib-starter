@@ -9,7 +9,6 @@ export default [
       'node_modules',
       'dist',
       'rollup.*.js',
-      'jest.config.js',
       'docs',
       '*.js',
       '*.cjs',
